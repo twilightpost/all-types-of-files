@@ -1,0 +1,12 @@
+---
+
+- hosts : nokube
+  tasks : 
+   - name : install xrdp
+     command : sudo apt install xrdp -y
+   - name : enable xrdp service
+     command : sudo systemctl enable xrdp
+   - name : start xrdp service
+     command : sudo systemctl start xrdp
+   - name : allow firewall port
+     command : sudo ufw allow 3389
