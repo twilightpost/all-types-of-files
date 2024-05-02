@@ -1,0 +1,12 @@
+[nodes]
+node02
+node03
+
+[no_nodes]
+nokube
+
+[all:children]
+nodes
+
+[all_nokube:children]
+no_nodes
