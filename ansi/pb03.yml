@@ -1,0 +1,14 @@
+- hosts : node02
+  tasks : 
+   - name : info search
+     command : uname -a
+     register : uname_info
+   - name : show uname command info
+     debug : 
+      var : uname_info.stdout
+   - name : generate hostname
+     command : hostname
+     register : hostname_info
+   - name : show hostname
+     debug : 
+      var : hostname_info
