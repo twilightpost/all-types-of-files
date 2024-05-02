@@ -1,0 +1,9 @@
+FROM ubuntu:18.04
+ENV pkg01 git
+ENV pkg02 nginx
+RUN apt-get update
+RUN apt-get install $pkg01 -y
+RUN apt-get install $pkg02 -y
+COPY index.html /var/www/html/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
