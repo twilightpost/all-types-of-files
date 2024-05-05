@@ -1,0 +1,16 @@
+---
+
+- name : Custom Variables in Ansible
+  hosts : node02
+  become : true
+  become_user : root
+  vars : # Each variable is nothing but a key: value - it is a map not a list of value
+   pkg_name : git
+   pkg_state : present
+   path : /tmp/demo.txt
+   file_state : touch
+  tasks : 
+   - name : install {{pkg_name}} on host
+     package : name={{pkg_name}} state:{{pkg_state}}
+   - name : create a file on a host server
+     file : path={{path}} state={{file_state}}
