@@ -1,0 +1,23 @@
+- name : Prompt variable value at runtime
+  hosts : node02
+  become : true
+  become_user : root
+  
+  # User will be prmpted to give the variable value at runtime
+  
+  vars_prompt : 
+   - name : pkg_name
+     prompt : Enter your package name
+     private : false
+   - name : username
+     prompt : Enter an user name
+     private : false
+   - name : password
+     prompt : Enter password
+     private : true
+  tasks: 
+   - name : Install {{pkg_name}} on hosts
+     package : name={{pkg_name}} state=present
+   - name : create a user on host server
+     user : name={{username}} password={{password}}
+

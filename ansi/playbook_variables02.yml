@@ -1,0 +1,22 @@
+---
+
+- name : custom variables in Ansible
+  hosts : node02
+  become : true
+  become_user : root
+  vars : # Each variable is nothing but a key: value - it is a map not a list of value
+   pkg_name : tree
+   pkg_state : present
+   path : /tmp/demo1.txt
+   file_state : touch
+  tasks : 
+   - name : install {{pkg_name}} on host
+     package : name={{pkg_name}} state={{pkg_state}}
+     check_mode : true
+     register : package_install_check
+   - name : print the output of the installation
+     debug : 
+      var : package_install_check
+   - name  : create file on host server
+     file : path={{path}} state={{file_state}}
+
