@@ -1,0 +1,17 @@
+
+---
+
+- name : Multiple condition using when keyword
+  hosts : node03
+  become : true
+  become_user : root
+  tasks : 
+   - name : execute a command on host server
+     command : hostname -s
+     when : (ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "20") or 
+            (ansible_distrubution == "Amazon")            
+     register : version_value
+   - name : show output
+     debug : 
+      var : version_value.stdout
+   

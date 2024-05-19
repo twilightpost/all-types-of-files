@@ -1,0 +1,17 @@
+---
+
+- name : Fact Varibales to create conditions
+  hosts : node03
+  become : true
+  become_user : root
+  tasks : 
+   - name : Install apache2 package
+     package: name=apache2 state=present
+     when : ansible_os_family == "RedHat"
+   - name: Install httpd package
+     package: name=httpd state=present
+     when: ansible_os_family == "RedHat"
+   - name : check hostname
+     command : hostname -s
+     when : ansible_os_family != "RedHat"
+

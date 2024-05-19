@@ -1,0 +1,11 @@
+---
+- name: Copy a jinja2 template
+  hosts: node03
+  become: true
+  vars:
+   location: /home/ansiuser
+   author: Ansible
+  tasks:
+   - name: Copy jinja2 template on host server
+     template: src=myappconfig.j2 dest=/etc/myappconfig
+

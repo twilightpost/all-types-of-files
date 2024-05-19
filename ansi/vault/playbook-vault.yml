@@ -1,0 +1,12 @@
+- name: ansible vault demo
+  hosts: nokube
+  become: true
+  become_user: root
+  vars_files:
+   - secret.yml
+  tasks:
+  - name: create a user on hostserver
+    user:
+     name: "{{user}}"
+     password: "{{password}}"
+
